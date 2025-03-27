@@ -1,37 +1,37 @@
-# School Management API
+# 🎓 School Management API 🏫
 
-## Overview
-This project provides a simple School Management API using Node.js, Express.js, and MySQL. It allows users to:
-- Add a new school to the database.
-- Retrieve a list of schools sorted by proximity to a given location.
-- Serve static HTML pages.
+## 📌 Overview
+This project provides a simple **School Management API** using **Node.js, Express.js, and MySQL**. It allows users to:
+- ➕ Add a new school to the database.
+- 📍 Retrieve a list of schools sorted by proximity to a given location.
+- 🌐 Serve static HTML pages.
 
-## Features
-- RESTful API endpoints for adding and listing schools.
-- Statically served HTML pages.
-- Environment configuration using `.env`.
-- Middleware for logging requests.
+## 🚀 Features
+- ✅ RESTful API endpoints for adding and listing schools.
+- 🖥️ Statically served HTML pages.
+- 🔧 Environment configuration using `.env`.
+- 📜 Middleware for logging requests.
 
-## Technologies Used
-- Node.js
-- Express.js
-- MySQL
-- Render (for hosting)
+## 🛠️ Technologies Used
+- 🟢 **Node.js**
+- ⚡ **Express.js**
+- 🗄️ **MySQL**
+- ☁️ **Render** (for hosting)
 
-## API Endpoints
+## 🔗 API Endpoints
 
-### Add a New School
-**Endpoint:** `/api/v1/school/addSchool`
-**Method:** `POST`
+### 🏫 Add a New School
+**📍 Endpoint:** `/api/v1/school/addSchool`  
+**📡 Method:** `POST`
 
-**Request:**
+**📩 Request:**
 ```sh
 curl --location 'https://school-management-hm8a.onrender.com/api/v1/school/addSchool' \
 --header 'Content-Type: application/json' \
 --data '{"name": "ABC High School", "address": "123 Street", "latitude": 19.0760, "longitude": 72.8777}'
 ```
 
-**Response:**
+**📨 Response:**
 ```json
 {
   "message": "School added successfully",
@@ -41,16 +41,16 @@ curl --location 'https://school-management-hm8a.onrender.com/api/v1/school/addSc
 
 ---
 
-### List Schools by Proximity
-**Endpoint:** `/api/v1/school/listSchools`
-**Method:** `GET`
+### 📍 List Schools by Proximity
+**📍 Endpoint:** `/api/v1/school/listSchools`  
+**📡 Method:** `GET`
 
-**Request:**
+**📩 Request:**
 ```sh
 curl --location 'https://school-management-hm8a.onrender.com/api/v1/school/listSchools?latitude=38&longitude=-100'
 ```
 
-**Response:**
+**📨 Response:**
 ```json
 [
   {
@@ -66,11 +66,11 @@ curl --location 'https://school-management-hm8a.onrender.com/api/v1/school/listS
 
 ---
 
-## Static Pages
-- **Homepage:** `/` → Serves `index.html` from the `public` folder.
-- **Find Nearby Schools Page:** `/findNearby` → Serves `findNearby.html` from the `public` folder.
+## 🖥️ Static Pages
+- 🏠 **Homepage:** `/` → Serves `index.html` from the `public` folder.
+- 🔍 **Find Nearby Schools Page:** `/findNearby` → Serves `findNearby.html` from the `public` folder.
 
-## Project Structure
+## 📂 Project Structure
 ```
 .
 ├── public/
@@ -83,17 +83,17 @@ curl --location 'https://school-management-hm8a.onrender.com/api/v1/school/listS
 ├── package.json
 ```
 
-## Installation & Setup
-1. Clone the repository:
+## ⚙️ Installation & Setup
+1. **Clone the repository:**
    ```sh
    git clone https://github.com/shreyak-29/school-management.git
    cd school-management
    ```
-2. Install dependencies:
+2. **Install dependencies:**
    ```sh
    npm install
    ```
-3. Set up environment variables in `.env`:
+3. **Set up environment variables in `.env`:**
    ```env
    PORT=3000
    DB_HOST=your_database_host
@@ -101,21 +101,19 @@ curl --location 'https://school-management-hm8a.onrender.com/api/v1/school/listS
    DB_PASSWORD=your_database_password
    DB_NAME=your_database_name
    ```
-4. Run the server:
+4. **Run the server:**
    ```sh
    node server.js
    ```
-5. Access the API:
-   - `http://localhost:3000/api/v1/school/addSchool`
-   - `http://localhost:3000/api/v1/school/listSchools?latitude=38&longitude=-100`
-   - `http://localhost:3000/` (Homepage)
-   - `http://localhost:3000/findNearby` (Find Nearby Schools Page)
+5. **Access the API:**
+   - 🌍 `http://localhost:3000/api/v1/school/addSchool`
+   - 📍 `http://localhost:3000/api/v1/school/listSchools?latitude=38&longitude=-100`
+   - 🏠 `http://localhost:3000/` (Homepage)
+   - 🔎 `http://localhost:3000/findNearby` (Find Nearby Schools Page)
 
-## Deployment
-This project is deployed on **Render**. The live API can be accessed at:
-- `https://school-management-hm8a.onrender.com/`
+## 🌍 Deployment
+This project is deployed on **Render**. The live API can be accessed at:  
+🔗 **[Live API](https://school-management-hm8a.onrender.com/)**
 
-## Author
-- **Shreya Kathe** (shreyakathe2904@gmail.com)
-
-
+## 👩‍💻 Author
+- **Shreya Kathe** ✉️ (shreyakathe2904@gmail.com) 🚀
