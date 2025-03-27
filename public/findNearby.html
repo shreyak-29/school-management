@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Nearby Schools</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+      main {
+        padding: 2rem;
+      }
+      form {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+      }
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-right: 1rem;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      #results {
+        margin-top: 2rem;
+      }
+      .school {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+      }
+      .button-container {
+        text-align: center;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Find Nearby Schools</h1>
+    </header>
+    <main>
+      <form onsubmit="event.preventDefault(); findNearbySchools();">
+        <label for="latitude">Latitude:</label>
+        <input type="number" id="latitude" step="any" required />
+
+        <label for="longitude">Longitude:</label>
+        <input type="number" id="longitude" step="any" required />
+
+        <button type="submit">Find Nearby Schools</button>
+        <button onclick="window.location.href='/'">Back to Home</button>
+      </form>
+
+      <div class="button-container"></div>
+
+      <div id="results"></div>
+    </main>
+
+    <script>
+      async function findNearbySchools() {
+        const latitude = document.getElementById("latitude").value;
+        const longitude = document.getElementById("longitude").value;
+
+        if (!latitude || !longitude) {
+          alert("Please enter both latitude and longitude.");
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            `/api/v1/school/listSchools?latitude=${latitude}&longitude=${longitude}`
+          );
+          const data = await response.json();
+
+          const resultsDiv = document.getElementById("results");
+          resultsDiv.innerHTML = "";
+
+          if (data.error) {
+            resultsDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+            return;
+          }
+
+          data.forEach((school) => {
+            const schoolDiv = document.createElement("div");
+            schoolDiv.className = "school";
+            schoolDiv.innerHTML = `
+            <p><strong>${school.name}</strong></p>
+            <p>Address: ${school.address}</p>
+            <p>Distance: ${school.distance.toFixed(2)} km</p>
+          `;
+            resultsDiv.appendChild(schoolDiv);
+          });
+        } catch (error) {
+          console.error("Error fetching schools:", error);
+          alert("An error occurred while fetching nearby schools.");
+        }
+      }
+    </script>
+  </body>
+</html>
