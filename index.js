@@ -33,11 +33,24 @@ app.post('/addSchool', (req, res) => {
 
 app.get('/listSchools', (req, res) => {
   console.log("GET /listSchools hit");
-  db.query('SELECT * FROM schools', (err, results) => {
-    if (err) return res.status(500).json({ error: 'Database error' });
-    res.status(200).json(results);
-  });
-});
+
+  // Extract user's location from query parameters
+  const { latitude, longitude } = req.query;
+
+  if (typeof latitude === 'undefined' || typeof longitude === 'undefined') {
+    return res.status(400).json({ error: 'Query parameters latitude and longitude are required.' });
+  }
+
+  const userLat = parseFloat(latitude);
+  const userLng = parseFloat(longitude);
+
+  if (isNaN(userLat) || isNaN(userLng)) {
+    return res.status(400).json({ error: 'Invalid latitude or longitude.' });
+  }
+
+  // Here, you might want to query the database for nearby schools and return results.
+  res.status(200).json({ message: 'List of schools will be here' });
+}); 
 
 // ❌ Catch-all must be AFTER routes
 app.use((req, res) => {
