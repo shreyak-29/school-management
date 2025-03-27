@@ -3,6 +3,7 @@ const schoolRouter = require('./routes/school.router.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
+require('dotenv').config();
 
 app.use(express.json()); // Ensure this is before routes
 
